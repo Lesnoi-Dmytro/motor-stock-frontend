@@ -47,9 +47,11 @@
       <button
         mat-flat-button
         class="submit_button"
-        [disabled]="!form.touched || form.invalid"
+        [disabled]="!form.touched || form.invalid || isLoading()"
       >
-        Sign In
+        @if(isLoading()) {
+        <mat-spinner diameter="24" strokeWidth="3"></mat-spinner>
+        } @else { Sign In }
       </button>
     </form>
   </mat-card-content>

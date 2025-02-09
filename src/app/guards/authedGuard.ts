@@ -8,7 +8,7 @@ export const authedGuard: CanMatchFn = () => {
 
   const isAuthenticated = authService.isAuthenticated();
   if (!isAuthenticated) {
-    router.navigate(['/auth/sign-in']);
+    router.navigate(['/auth/sign_in']);
   }
 
   return isAuthenticated;

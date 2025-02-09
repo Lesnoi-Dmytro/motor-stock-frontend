@@ -1,3 +1,4 @@
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import {
@@ -11,7 +12,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { AuthService } from '@services/auth/auth.service';
 import { PopUpService } from '@services/pop-up/pop-up.service';
@@ -23,8 +23,8 @@ import { PopUpService } from '@services/pop-up/pop-up.service';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    MatIconModule,
     MatProgressSpinnerModule,
+    MatIconModule,
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',

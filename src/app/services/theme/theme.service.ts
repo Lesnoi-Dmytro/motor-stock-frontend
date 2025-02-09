@@ -27,16 +27,18 @@ export class ThemeService {
     return this.appTheme.asReadonly();
   }
 
+  constructor() {
+    effect(() => {
+      const colorSheme =
+        this.appTheme() === 'system' ? 'light dark' : this.appTheme();
+      document.documentElement.style.colorScheme = colorSheme;
+      localStorage.setItem('theme', this.appTheme());
+    });
+  }
+
   public setTheme(theme: 'light' | 'dark' | 'system') {
     this.appTheme.set(theme);
   }
-
-  public setSystemTheme = effect(() => {
-    const colorSheme =
-      this.appTheme() === 'system' ? 'light dark' : this.appTheme();
-    document.documentElement.style.colorScheme = colorSheme;
-    localStorage.setItem('theme', this.appTheme());
-  });
 }
 
 interface ThemeInfo {
