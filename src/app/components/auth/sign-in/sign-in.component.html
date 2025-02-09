@@ -1,0 +1,58 @@
+<mat-card class="sign_in_card" appearance="outlined">
+  <mat-card-title class="title">
+    <h3>Sign In</h3>
+  </mat-card-title>
+  <mat-card-content class="content">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="form_field">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          name="email"
+          autocomplete="email"
+          matInput
+          placeholder="example@example.com"
+          formControlName="email"
+        />
+        @if(form.controls.email.invalid) {
+        <mat-error>{{ emailErrorMessage }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="form_field">
+        <mat-label>Password</mat-label>
+        <input
+          [type]="showPassword() ? 'text' : 'password'"
+          matInput
+          formControlName="password"
+        />
+
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="onTogglePasswordVisibility()"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="showPassword()"
+        >
+          <mat-icon>{{
+            showPassword() ? "visibility" : "visibility_off"
+          }}</mat-icon>
+        </button>
+
+        @if(form.controls.password.invalid) {
+        <mat-error>{{ passwordErrorMessage }}</mat-error>
+        }
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        class="submit_button"
+        [disabled]="!form.touched || form.invalid || isLoading()"
+      >
+        @if(isLoading()) {
+        <mat-spinner diameter="30" strokeWidth="3"></mat-spinner>
+        } @else { Sign In }
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
