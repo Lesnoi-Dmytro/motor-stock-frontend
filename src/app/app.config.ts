@@ -11,13 +11,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AppInitService } from '@services/app-init/app-init.service';
 import { apiInterceptor } from '@interceptors/api.interceptor';
+import { authInterceptor } from '@interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpClient(withInterceptors([apiInterceptor])),
+    provideHttpClient(withInterceptors([apiInterceptor, authInterceptor])),
     provideAppInitializer(() => inject(AppInitService).initializeApp()),
   ],
 };
