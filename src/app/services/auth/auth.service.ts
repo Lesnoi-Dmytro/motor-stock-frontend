@@ -10,6 +10,10 @@ export class AuthService {
   private token = signal<string | null>(localStorage.getItem('token'));
   public user = computed(() => this.token()?.split('.')[1]);
 
+  public isAuthenticated() {
+    return !!this.user();
+  }
+
   public signIn(email: string, password: string) {
     return this.http
       .post<{ token: string }>('api/auth/sign_in', {

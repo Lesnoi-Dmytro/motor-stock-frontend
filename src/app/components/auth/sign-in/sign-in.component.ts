@@ -52,6 +52,7 @@ export class SignInComponent {
   });
 
   public readonly showPassword = signal<boolean>(false);
+  public readonly isLoading = signal<boolean>(false);
 
   public onTogglePasswordVisibility(): void {
     this.showPassword.update((show) => !show);
@@ -62,14 +63,17 @@ export class SignInComponent {
       return;
     }
 
+    this.isLoading.set(true);
     this.authService
       .signIn(this.form.value.email!, this.form.value.password!)
       .subscribe({
         next: () => {
+          this.isLoading.set(false);
           this.popUpService.openSuccessPopUp('Sign in successful');
           this.router.navigate(['/']);
         },
         error: (error: unknown) => {
+          this.isLoading.set(false);
           if (
             error instanceof HttpErrorResponse &&
             error.error.message === 'Invalid credentials'
