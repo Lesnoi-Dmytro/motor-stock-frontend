@@ -26,4 +26,11 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+}
+
+.main_layout {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

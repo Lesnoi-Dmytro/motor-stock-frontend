@@ -1,13 +1,15 @@
 <header>
-  <mat-card class="header_card">
-    <mat-card-content class="header_content">
-      <h2 class="header_logo">
-        <mat-icon svgIcon="logo" class="header_icon"></mat-icon>
-        Motor Stock
-      </h2>
+  <mat-card class="header">
+    <mat-card-content class="content">
+      <a routerLink="/" class="logo">
+        <mat-icon svgIcon="logo" class="logo_icon"></mat-icon>
+        <h2 class="logo_text">Motor Stock</h2>
+      </a>
 
-      <div>
+      <div class="side_content">
+        <ng-content select="[center]" />
         <app-theme-menu />
+        <ng-content select="[end]" />
       </div>
     </mat-card-content>
   </mat-card>
