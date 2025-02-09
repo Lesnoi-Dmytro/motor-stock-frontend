@@ -7,7 +7,6 @@
 }
 
 html {
-  color-scheme: light dark;
   @include mat.theme(
     (
       color: (
