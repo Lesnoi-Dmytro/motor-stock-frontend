@@ -1,11 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
-  type AbstractControl,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -13,14 +11,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {
-  catchError,
-  delay,
-  distinctUntilChanged,
-  map,
-  of,
-  switchMap,
-} from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthService } from '@services/auth/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -42,12 +34,13 @@ import {
   ],
 })
 export class SignInComponent {
-  private readonly http = inject(HttpClient);
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   public form = new FormGroup({
     email: new FormControl('', {
       validators: [Validators.required, Validators.email],
-      asyncValidators: [(control) => this.isEmailAvailable(control)],
+      // asyncValidators: [(control) => this.isEmailAvailable(control)],
     }),
     password: new FormControl('', [
       Validators.required,
@@ -56,14 +49,26 @@ export class SignInComponent {
   });
 
   public readonly showPassword = signal<boolean>(false);
-  public readonly emailValidationLoading = signal<boolean>(false);
 
   public onTogglePasswordVisibility(): void {
     this.showPassword.update((show) => !show);
   }
 
   public onSubmit(): void {
-    console.log(this.form.value);
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.authService
+      .signIn(this.form.value.email!, this.form.value.password!)
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 
   public get emailErrorMessage() {
@@ -89,30 +94,24 @@ export class SignInComponent {
     return '';
   }
 
-  public onEmailChange(): void {
-    this.emailValidationLoading.set(false);
-  }
+  // private isEmailAvailable(control: AbstractControl<string>) {
+  //   return of(control.value).pipe(
+  //     delay(500),
+  //     distinctUntilChanged(),
+  //     switchMap((email) => {
+  //       this.emailValidationLoading.set(true);
 
-  private isEmailAvailable(control: AbstractControl<string>) {
-    return of(control.value).pipe(
-      delay(500),
-      distinctUntilChanged(),
-      switchMap((email) => {
-        this.emailValidationLoading.set(true);
-
-        return this.http
-          .post<{ available: boolean }>('api/auth/email/available', { email })
-          .pipe(
-            map((response) => {
-              this.emailValidationLoading.set(false);
-              return response.available ? null : { emailNotAvailable: true };
-            }),
-            catchError(() => {
-              this.emailValidationLoading.set(false);
-              return of({ emailNotAvailable: true });
-            })
-          );
-      })
-    );
-  }
+  //       return this.authService.isEmailAvailable(email).pipe(
+  //         map((response) => {
+  //           this.emailValidationLoading.set(false);
+  //           return response.available ? null : { emailNotAvailable: true };
+  //         }),
+  //         catchError(() => {
+  //           this.emailValidationLoading.set(false);
+  //           return of({ emailNotAvailable: true });
+  //         })
+  //       );
+  //     })
+  //   );
+  // }
 }

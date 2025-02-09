@@ -13,19 +13,16 @@
           matInput
           placeholder="example@example.com"
           formControlName="email"
-          (change)="onEmailChange()"
         />
         @if(form.controls.email.invalid) {
         <mat-error>{{ emailErrorMessage }}</mat-error>
-        } @if (emailValidationLoading()) {
-        <mat-spinner matSuffix diameter="24" strokeWidth="3"></mat-spinner>
         }
       </mat-form-field>
 
       <mat-form-field class="form_field">
         <mat-label>Password</mat-label>
         <input
-          [type]="showPassword() ? 'password' : 'text'"
+          [type]="showPassword() ? 'text' : 'password'"
           matInput
           formControlName="password"
         />
@@ -38,7 +35,7 @@
           [attr.aria-pressed]="showPassword()"
         >
           <mat-icon>{{
-            showPassword() ? "visibility_off" : "visibility"
+            showPassword() ? "visibility" : "visibility_off"
           }}</mat-icon>
         </button>
 
