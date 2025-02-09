@@ -1,4 +1,5 @@
 import type { HttpInterceptorFn } from '@angular/common/http';
+import { environment } from '@environments/environment';
 
 export const apiInterceptor: HttpInterceptorFn = (req, next) => {
   {
@@ -7,7 +8,7 @@ export const apiInterceptor: HttpInterceptorFn = (req, next) => {
     }
 
     const apiReq = req.clone({
-      url: `http://localhost:3000/${req.url}`,
+      url: `${environment.apiUrl}/${req.url}`,
       withCredentials: true,
       setHeaders: {
         'Content-Type': req.headers.has('Content-Type')
