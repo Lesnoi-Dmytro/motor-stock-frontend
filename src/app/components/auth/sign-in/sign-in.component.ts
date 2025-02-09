@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import {
   FormControl,
@@ -13,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { AuthService } from '@services/auth/auth.service';
+import { PopUpService } from '@services/pop-up/pop-up.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -35,6 +37,7 @@ import { AuthService } from '@services/auth/auth.service';
 })
 export class SignInComponent {
   private readonly authService = inject(AuthService);
+  private readonly popUpService = inject(PopUpService);
   private readonly router = inject(Router);
 
   public form = new FormGroup({
@@ -63,10 +66,18 @@ export class SignInComponent {
       .signIn(this.form.value.email!, this.form.value.password!)
       .subscribe({
         next: () => {
+          this.popUpService.openSuccessPopUp('Sign in successful');
           this.router.navigate(['/']);
         },
-        error: (error) => {
-          console.log(error);
+        error: (error: unknown) => {
+          if (
+            error instanceof HttpErrorResponse &&
+            error.error.message === 'Invalid credentials'
+          ) {
+            this.popUpService.openErrorPopUp('Invalid credentials');
+          } else {
+            this.popUpService.openErrorPopUp('An error occured during sign in');
+          }
         },
       });
   }

@@ -34,3 +34,15 @@ body {
   flex-direction: column;
   flex-grow: 1;
 }
+
+.error_snackbar.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: var(--mat-sys-error-container);
+  --mdc-snackbar-supporting-text-color: var(--mat-sys-on-background);
+  --mat-snack-bar-button-color: var(--mat-sys-on-background);
+}
+
+.success_snackbar.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: var(--mat-sys-primary-container);
+  --mdc-snackbar-supporting-text-color: var(--mat-sys-on-background);
+  --mat-snack-bar-button-color: var(--mat-sys-on-background);
+}
