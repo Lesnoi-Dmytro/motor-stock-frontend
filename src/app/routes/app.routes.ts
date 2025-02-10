@@ -2,13 +2,13 @@ import { Routes } from '@angular/router';
 import { AuthComponent } from '@components/auth/auth.component';
 import { authedGuard } from '@guards/authedGuard';
 import { unauthedGuard } from '@guards/unauthedGuard';
-import { authRoutes } from '@routes/auth/auth.routes';
 
 export const routes: Routes = [
   {
     path: 'auth',
-    component: AuthComponent,
-    loadChildren: () => authRoutes,
+    loadComponent: () => AuthComponent,
+    loadChildren: () =>
+      import('@routes/auth/auth.routes').then((m) => m.authRoutes),
     canMatch: [unauthedGuard],
   },
   {

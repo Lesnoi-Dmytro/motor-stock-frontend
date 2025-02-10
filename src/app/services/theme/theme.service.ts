@@ -27,17 +27,36 @@ export class ThemeService {
     return this.appTheme.asReadonly();
   }
 
+  public setTheme(theme: 'light' | 'dark' | 'system') {
+    this.appTheme.set(theme);
+  }
+
   constructor() {
+    const matchPreferedTheme = (e: MediaQueryListEvent) => {
+      this.setDarkTheme(e.matches);
+    };
+    const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+
     effect(() => {
-      const colorSheme =
-        this.appTheme() === 'system' ? 'light dark' : this.appTheme();
-      document.documentElement.style.colorScheme = colorSheme;
+      const colorSheme = this.appTheme();
       localStorage.setItem('theme', this.appTheme());
+
+      if (colorSheme === 'system') {
+        this.setDarkTheme(matcher.matches);
+        matcher.addEventListener('change', matchPreferedTheme);
+      } else {
+        this.setDarkTheme(colorSheme === 'dark');
+        matcher.removeEventListener('change', matchPreferedTheme);
+      }
     });
   }
 
-  public setTheme(theme: 'light' | 'dark' | 'system') {
-    this.appTheme.set(theme);
+  private setDarkTheme(dark: boolean) {
+    if (dark) {
+      document.documentElement.classList.add('dark-mode');
+    } else {
+      document.documentElement.classList.remove('dark-mode');
+    }
   }
 }
 

@@ -1,43 +1,45 @@
+@use "mixins" as *;
+
 .header {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
+}
 
-  .content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 3rem;
-    gap: 1rem;
-  }
+.header_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  gap: 1rem;
+}
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1.8rem;
+.header_logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.8rem;
+  color: var(--mat-text-primary);
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
     color: var(--mat-text-primary);
-    text-decoration: none;
-
-    &:hover,
-    &:focus,
-    &:active,
-    &:visited {
-      color: var(--mat-text-primary);
-    }
   }
+}
 
-  .logo_icon {
-    width: 1.3em;
-    height: 1.3em;
-  }
+.header_logo_icon {
+  @include iconSize(2.5rem);
+}
 
-  .logo_text {
-    font-size: 1.8rem;
-  }
+.header_logo_text {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
 
-  .side_content {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
+.header_side_content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
