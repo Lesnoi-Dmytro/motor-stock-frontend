@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@use "mixins" as *;
 
 * {
   margin: 0;
@@ -7,6 +8,7 @@
 }
 
 html {
+  color-scheme: light;
   @include mat.theme(
     (
       color: (
@@ -29,10 +31,26 @@ body {
   display: flex;
 }
 
+html.dark-mode {
+  color-scheme: dark;
+}
+
 .main_layout {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+.main_background {
+  background: url("/img/logo_bg_black.svg") no-repeat right -50px bottom -50px
+      fixed,
+    url("/img/logo_bg_black.svg") no-repeat left -50px top -50px fixed;
+  background-size: 500px 500px, 500px 500px;
+
+  @include dark {
+    background-image: url("/img/logo_bg_white.svg"),
+      url("/img/logo_bg_white.svg");
+  }
 }
 
 .error_snackbar.mat-mdc-snack-bar-container {

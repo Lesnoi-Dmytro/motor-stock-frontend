@@ -1,11 +1,11 @@
-.main_content {
+@use "mixins" as *;
+
+.auth_main_content {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-}
 
-@media (min-width: 640px) {
-  .main_content {
+  @include sm {
     padding: 5rem;
   }
 }

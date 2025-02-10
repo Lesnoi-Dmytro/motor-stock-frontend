@@ -1,12 +1,12 @@
 <header>
   <mat-card class="header">
-    <mat-card-content class="content">
-      <a routerLink="/" class="logo">
-        <mat-icon svgIcon="logo" class="logo_icon"></mat-icon>
-        <h2 class="logo_text">Motor Stock</h2>
+    <mat-card-content class="header_content">
+      <a routerLink="/" class="header_logo">
+        <mat-icon svgIcon="logo" class="header_logo_icon"></mat-icon>
+        <h2 class="header_logo_text">Motor Stock</h2>
       </a>
 
-      <div class="side_content">
+      <div class="header_side_content">
         <ng-content select="[center]" />
         <app-theme-menu />
         <ng-content select="[end]" />

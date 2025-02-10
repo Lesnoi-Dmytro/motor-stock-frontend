@@ -12,7 +12,7 @@ export class AppInitService {
   initializeApp() {
     this.iconRegistry.addSvgIcon(
       'logo',
-      this.sanitizer.bypassSecurityTrustResourceUrl('logo.svg')
+      this.sanitizer.bypassSecurityTrustResourceUrl('img/logo.svg')
     );
   }
 }
