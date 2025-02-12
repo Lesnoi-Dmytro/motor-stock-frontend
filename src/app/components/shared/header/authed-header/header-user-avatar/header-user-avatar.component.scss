@@ -1,0 +1,30 @@
+.user_avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+
+  border-radius: 100%;
+  background-color: var(--mat-sys-primary-container);
+  color: white;
+
+  .user_avatar_icon {
+    margin: 0;
+    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.user_info {
+  max-width: 150px;
+
+  &[disabled] {
+    opacity: 1;
+  }
+}
+
+.user_name {
+  font-weight: 500;
+}

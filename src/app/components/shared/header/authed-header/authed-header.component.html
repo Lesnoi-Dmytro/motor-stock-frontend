@@ -1,21 +1,8 @@
 <app-header>
   <ng-container inner>
-    <mat-form-field class="header_search_field" subscriptSizing="dynamic">
-      <input
-        type="text"
-        placeholder="Search"
-        matInput
-        [matAutocomplete]="auto"
-      />
-      <mat-icon matSuffix>search</mat-icon>
-      <mat-autocomplete #auto="matAutocomplete">
-        @if (searchLoading()) {
-        <mat-option class="search_loading" disabled>
-          <mat-spinner diameter="32" strokeWidth="4" />
-        </mat-option>
-        }
-      </mat-autocomplete>
-    </mat-form-field>
+    <app-header-search />
   </ng-container>
-  <ng-container outer></ng-container>
+  <ng-container outer>
+    <app-header-user-avatar />
+  </ng-container>
 </app-header>

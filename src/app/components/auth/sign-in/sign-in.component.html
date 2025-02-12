@@ -50,7 +50,7 @@
         [disabled]="!form.touched || form.invalid || isLoading()"
       >
         @if(isLoading()) {
-        <mat-spinner diameter="32" strokeWidth="4"></mat-spinner>
+        <mat-spinner />
         } @else { Sign In }
       </button>
     </form>

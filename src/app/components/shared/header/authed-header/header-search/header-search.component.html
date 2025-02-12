@@ -1,0 +1,11 @@
+<mat-form-field class="header_search_field" subscriptSizing="dynamic">
+  <input type="text" placeholder="Search" matInput [matAutocomplete]="auto" />
+  <mat-icon matSuffix>search</mat-icon>
+  <mat-autocomplete #auto="matAutocomplete">
+    @if (searchLoading()) {
+    <mat-option class="search_loading" disabled>
+      <mat-spinner />
+    </mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

@@ -1,0 +1,23 @@
+.menu_trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: fit-content;
+  font-size: 1.5rem;
+  line-height: 1;
+
+  ::ng-deep mat-icon {
+    margin: 0;
+    font-size: 1.8rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: block;
+  }
+
+  &:has(.material-icons, mat-icon, [matButtonIcon]) {
+    width: fit-content;
+    padding: 0.5rem;
+    min-width: unset;
+  }
+}

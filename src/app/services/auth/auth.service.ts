@@ -11,11 +11,16 @@ import { tap } from 'rxjs';
 export class AuthService {
   private http = inject(HttpClient);
 
-  public token = signal<string | null>(localStorage.getItem('token'));
+  public token = signal<string | null>(null);
   public user = signal<IAuthUser | null | undefined>(undefined);
 
   constructor() {
-    effect(() => this.decodeUser());
+    this.initUser();
+  }
+
+  private initUser() {
+    this.token.set(localStorage.getItem('token'));
+    this.decodeUser();
   }
 
   public isAuthenticated() {
@@ -35,6 +40,7 @@ export class AuthService {
       .pipe(
         tap((response) => {
           this.token.set(response.token);
+          this.decodeUser();
           localStorage.setItem('token', response.token);
         })
       );
@@ -48,6 +54,7 @@ export class AuthService {
 
   public logout() {
     localStorage.removeItem('token');
+    this.user.set(null);
     this.token.set(null);
   }
 

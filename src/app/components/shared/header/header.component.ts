@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { ThemeMenuComponent } from '@components/shared/theme-menu/theme-menu.component';
+import { ThemeMenuComponent } from '@components/shared/header/authed-header/theme-menu/theme-menu.component';
 
 @Component({
   selector: 'app-header',

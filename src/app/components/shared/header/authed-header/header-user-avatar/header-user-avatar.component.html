@@ -1,0 +1,18 @@
+<app-menu>
+  <ng-container trigger>
+    <div class="user_avatar">
+      <mat-icon class="user_avatar_icon">person</mat-icon>
+    </div>
+  </ng-container>
+  <ng-container items>
+    <button mat-menu-item disabled class="user_info">
+      <p class="user_name">{{ userName }}</p>
+      <p>{{ companyName }}</p>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </ng-container>
+</app-menu>

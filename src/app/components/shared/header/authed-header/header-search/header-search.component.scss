@@ -1,0 +1,18 @@
+.header_search_field {
+  ::ng-deep .mat-mdc-form-field-infix {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    min-height: unset;
+  }
+}
+
+.search_loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ::ng-deep &.mdc-list-item--disabled .mdc-list-item__primary-text {
+    opacity: 1;
+    margin-right: 0;
+  }
+}

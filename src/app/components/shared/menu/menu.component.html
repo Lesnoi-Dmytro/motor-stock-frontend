@@ -1,0 +1,7 @@
+<button mat-button [matMenuTriggerFor]="menu" class="menu_trigger">
+  <ng-content select="[trigger]" />
+</button>
+
+<mat-menu #menu="matMenu">
+  <ng-content select="[items]" />
+</mat-menu>
