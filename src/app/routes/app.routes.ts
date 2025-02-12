@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthComponent } from '@components/auth/auth.component';
+import { NotFoundComponent } from '@components/not-found/not-found.component';
 import { authedGuard } from '@guards/authedGuard';
 import { unauthedGuard } from '@guards/unauthedGuard';
 
@@ -12,12 +13,17 @@ export const routes: Routes = [
     canMatch: [unauthedGuard],
   },
   {
-    path: 'test',
+    path: 'stocks',
     component: AuthComponent,
     canMatch: [authedGuard],
   },
   {
+    path: '',
+    redirectTo: 'stocks',
+    pathMatch: 'full',
+  },
+  {
     path: '**',
-    component: AuthComponent,
+    component: NotFoundComponent,
   },
 ];
