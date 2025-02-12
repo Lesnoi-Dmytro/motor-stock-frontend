@@ -37,7 +37,7 @@ export class HeaderUserAvatarComponent {
   get companyName() {
     return this.user()?.role === UserRole.EMPLOYEE
       ? 'Motor Stock'
-      : 'Other Company';
+      : this.user()?.company;
   }
 
   public onLogout() {

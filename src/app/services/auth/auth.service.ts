@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { effect, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import type { IAuthUser } from '@models/auth/auth-user.model';
 import type { CustomJwtPayload } from '@models/auth/jwt-payload.model';
 import { jwtDecode } from 'jwt-decode';
@@ -74,7 +74,9 @@ export class AuthService {
           email: payload.email,
           firstName: payload.firstName,
           lastName: payload.lastName,
+          color: payload.color,
           role: payload.role,
+          company: payload.company,
         });
       }
     } catch (error) {

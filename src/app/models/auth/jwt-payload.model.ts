@@ -6,5 +6,7 @@ export interface CustomJwtPayload extends JwtPayload {
   email: string;
   firstName: string;
   lastName: string;
+  color: string;
   role: UserRole;
+  company?: string;
 }
