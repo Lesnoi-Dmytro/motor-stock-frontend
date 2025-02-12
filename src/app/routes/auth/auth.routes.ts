@@ -4,6 +4,6 @@ export const authRoutes = [
   {
     path: 'sign_in',
     component: SignInComponent,
-    title: 'Sign In',
+    title: 'Motor Stock: Sign In',
   },
 ];

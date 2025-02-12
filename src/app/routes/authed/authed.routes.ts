@@ -5,5 +5,6 @@ export const authedRoutes: Routes = [
   {
     path: 'stocks',
     component: StocksComponent,
+    title: 'Motor Stock: Stocks',
   },
 ];

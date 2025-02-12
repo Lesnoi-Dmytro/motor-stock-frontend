@@ -28,5 +28,6 @@ export const routes: Routes = [
   {
     path: '**',
     component: NotFoundComponent,
+    title: 'Motor Stock: Page Not Found',
   },
 ];
