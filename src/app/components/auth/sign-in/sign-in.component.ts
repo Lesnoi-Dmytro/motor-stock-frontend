@@ -9,7 +9,6 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
@@ -28,12 +27,6 @@ import { PopUpService } from '@services/pop-up/pop-up.service';
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
-  providers: [
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { appearance: 'outline', hideRequiredMarker: true },
-    },
-  ],
 })
 export class SignInComponent {
   private readonly authService = inject(AuthService);
